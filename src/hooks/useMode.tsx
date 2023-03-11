@@ -13,7 +13,6 @@ function useDarkMode(themeInput: ThemeInput) {
         const theme = await localforage.getItem("theme");
         // This code runs once the value has been loaded
         // from the offline store.
-        console.log({ theme });
 
         // On page load or when changing themes, best to add inline in `head` to avoid FOUC
         if (

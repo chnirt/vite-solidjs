@@ -277,10 +277,10 @@ const StyleGuide = () => {
               endIcon: <MdDelete />,
               disabled: true,
             },
-          ].map((item) => (
+          ].map((item, ii) => (
             <button
               type="button"
-              key={`button-${item}`}
+              key={`button-${ii}`}
               className={classNames(
                 "first:ml-0 ml-4",
                 "bg-primary-40 flex justify-center items-center rounded-[6.25rem] px-6 py-[0.625rem]",

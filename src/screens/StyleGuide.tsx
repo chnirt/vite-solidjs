@@ -1,4 +1,6 @@
 import classNames from "classnames";
+import { MdDelete } from "react-icons/md";
+import { HiPlus } from "react-icons/hi";
 
 const StyleGuide = () => {
   return (
@@ -206,7 +208,8 @@ const StyleGuide = () => {
             <div
               key={`elevation-${item}`}
               className={classNames(
-                "first:ml-0 ml-4 w-[12.5rem] h-[12.5rem] rounded-[1rem] bg-[#FFFBFE]",
+                "first:ml-0 ml-4",
+                "w-[12.5rem] h-[12.5rem] rounded-[1rem] bg-[#FFFBFE]",
                 {
                   "shadow-0": item === 0,
                   "shadow-1": item === 1,
@@ -243,6 +246,86 @@ const StyleGuide = () => {
               />
             )
           )}
+        </div>
+      </div>
+      <div className="flex flex-col">
+        Buttons
+        <div className="flex flex-row">
+          {[
+            {
+              label: "Filled",
+            },
+            {
+              label: "Disabled Filled",
+              disabled: true,
+            },
+            {
+              label: "Start Icon Filled",
+              startIcon: <HiPlus />,
+            },
+            {
+              label: "End Icon Filled",
+              endIcon: <MdDelete />,
+            },
+            {
+              label: "Disabled Start Icon Filled",
+              startIcon: <HiPlus />,
+              disabled: true,
+            },
+            {
+              label: "End Icon Filled",
+              endIcon: <MdDelete />,
+              disabled: true,
+            },
+          ].map((item) => (
+            <button
+              type="button"
+              key={`button-${item}`}
+              className={classNames(
+                "first:ml-0 ml-4",
+                "bg-primary-40 flex justify-center items-center rounded-[6.25rem] px-6 py-[0.625rem]",
+                {
+                  "hover:opacity-80": !item?.disabled,
+                  "focus:opacity-80": !item?.disabled,
+                  "active:opacity-80": !item?.disabled,
+                  "disabled:bg-neutral-10/[.12] text-neutral-10/[0.38]":
+                    item?.disabled,
+                }
+              )}
+              disabled={item?.disabled}
+            >
+              {item?.startIcon && (
+                <div
+                  className={classNames("text-white mr-2", {
+                    "text-neutral-10/[0.38]": item?.disabled,
+                  })}
+                >
+                  {item?.startIcon}
+                </div>
+              )}
+              {item?.label && (
+                <span
+                  className={classNames(
+                    "font-roboto font-medium text-[0.875rem] leading-[1.25rem] tracking-[0.00625rem] text-white",
+                    {
+                      "text-neutral-10/[0.38]": item?.disabled,
+                    }
+                  )}
+                >
+                  {item?.label}
+                </span>
+              )}
+              {item?.endIcon && (
+                <div
+                  className={classNames("text-white ml-2", {
+                    "text-neutral-10/[0.38]": item?.disabled,
+                  })}
+                >
+                  {item?.endIcon}
+                </div>
+              )}
+            </button>
+          ))}
         </div>
       </div>
     </div>

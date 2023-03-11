@@ -1,0 +1,34 @@
+{
+  "name": "vite-project",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "env.setup": "npx dotenv-vault new vlt_0ce5ec26c44e6d82c4c30920bd2f02b6bc0db94e67c4ab77e9425ceb8e38ad3d",
+    "env.login": "npx dotenv-vault login",
+    "env.logout": "npx dotenv-vault logout",
+    "env.pull": "npx dotenv-vault pull",
+    "env.build": "npx dotenv-vault build",
+    "env.pull.stag": "pnpm env.pull staging .env.staging",
+    "env.pull.prod": "pnpm env.pull production .env.production",
+    "env.push": "npx dotenv-vault push",
+    "env.push.stag": "pnpm env.push staging .env.staging",
+    "env.push.prod": "pnpm env.push production .env.production"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "solid-js": "^1.6.13"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@vitejs/plugin-react": "^3.1.0",
+    "typescript": "^4.9.3",
+    "vite": "^4.1.0",
+    "vite-plugin-solid": "^2.6.1"
+  }
+}

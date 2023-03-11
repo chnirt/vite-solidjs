@@ -1,7 +1,16 @@
-import { cva } from "class-variance-authority";
+import { cva, VariantProps } from "class-variance-authority";
 import { MouseEventHandler } from "react";
 import { ReactNode } from "react";
 
+export type ButtonVariantProps = VariantProps<typeof ButtonVariants>;
+export interface IButton {
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+  children?: ReactNode;
+}
+/**
+ * Button
+ */
+export interface ButtonProps extends ButtonVariantProps, IButton {}
 const ButtonVariants = cva(
   /* button base style */
   "h-fit text-white uppercase transition-colors duration-150",
@@ -38,21 +47,13 @@ const ButtonVariants = cva(
   }
 );
 
-interface IButton {
-  intent?: string;
-  size?: string;
-  roundness?: string;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-  children?: ReactNode;
-}
-
 export default function Button({
   intent = "default",
   size = "medium",
   roundness = "round",
   onClick,
   children,
-}: IButton) {
+}: ButtonProps) {
   return (
     <button
       className={ButtonVariants({ intent, size, roundness })}

@@ -3,11 +3,12 @@ import reactLogo from "./assets/react.svg";
 import "./App.css";
 
 import StyleGuide from "./screens/StyleGuide";
+import Provider from "./providers";
 
 function App() {
   const [count, setCount] = useState(0);
 
-  return <StyleGuide />;
+  return <Provider />;
 
   return (
     <div className="App">

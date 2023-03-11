@@ -16,19 +16,30 @@
     "env.pull.prod": "pnpm env.pull production .env.production",
     "env.push": "npx dotenv-vault push",
     "env.push.stag": "pnpm env.push staging .env.staging",
-    "env.push.prod": "pnpm env.push production .env.production"
+    "env.push.prod": "pnpm env.push production .env.production",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
+    "class-variance-authority": "^0.4.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "solid-js": "^1.6.13"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.0.0-rc.1",
+    "@storybook/addon-interactions": "^7.0.0-rc.1",
+    "@storybook/addon-links": "^7.0.0-rc.1",
+    "@storybook/blocks": "^7.0.0-rc.1",
+    "@storybook/builder-vite": "^7.0.0-rc.1",
+    "@storybook/react": "^7.0.0-rc.1",
+    "@storybook/react-vite": "^7.0.0-rc.1",
+    "@storybook/testing-library": "^0.0.14-next.1",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-react": "^3.1.0",
+    "prop-types": "^15.8.1",
+    "storybook": "^7.0.0-rc.1",
     "typescript": "^4.9.3",
-    "vite": "^4.1.0",
-    "vite-plugin-solid": "^2.6.1"
+    "vite": "^4.1.0"
   }
 }

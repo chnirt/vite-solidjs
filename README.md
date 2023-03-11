@@ -2,7 +2,7 @@ Support:
 - dotenv-vault
 - solidjs
 - storybook
-- ui kit (https://www.figma.com/file/zF4dpUTtyXgeWE02k0OgC1/Material-3-Design-Kit-(Community)?node-id=11%3A1833&t=37SDTxnyj3ETfIQP-0)
+- ui kit (https://www.figma.com/community/file/1035203688168086460)
 - custom fonts
 
 Further help:

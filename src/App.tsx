@@ -2,10 +2,12 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 
-// console.log(import.meta.env);
+import StyleGuide from "./screens/StyleGuide";
 
 function App() {
   const [count, setCount] = useState(0);
+
+  return <StyleGuide />;
 
   return (
     <div className="App">

@@ -488,9 +488,14 @@ const renderButtons = () => {
 const StyleGuide = () => {
   return (
     <div className="p-2">
-      <Typography variant={"ds"} weight={"black"}>
-        StyleGuide
-      </Typography>
+      <a
+        href="https://www.figma.com/community/file/1035203688168086460"
+        target={"_blank"}
+      >
+        <Typography variant={"ds"} weight={"black"}>
+          StyleGuide
+        </Typography>
+      </a>
       <div className="flex flex-col">{renderTypography()}</div>
       <div className="flex flex-col">{renderColorGuide()}</div>
       <div className="flex flex-col">{renderElevation()}</div>

@@ -11,7 +11,7 @@ const Root = () => {
   }, [mode, setMode]);
 
   return (
-    <div className="bg-white dark:bg-black">
+    <div className="container">
       <button className="bg-red-500 text-white p-2" onClick={toggleMode}>
         {mode === "dark" ? "*" : null} dark
       </button>

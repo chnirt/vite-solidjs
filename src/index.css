@@ -2,10 +2,27 @@
 
 @tailwind base;
 @layer base {
+  .container {
+    @apply bg-light-surface dark:bg-dark-surface;
+  }
+  .textcolor {
+    @apply text-light-onSurface dark:text-dark-onSurface;
+  }
+  .badgeBackgroundColor {
+    @apply bg-light-error dark:bg-dark-error;
+  }
+  .badgeTextColor {
+    @apply text-light-onError dark:text-dark-onError !important;
+  }
+  .badgeIconColor {
+    @apply text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant !important;
+  }
+
   .basefont,
   .myfont {
-    @apply font-roboto;
+    @apply font-roboto textcolor;
   }
+
   .dl {
     @apply text-[3.563rem] leading-[4rem];
   }

@@ -111,6 +111,21 @@ module.exports = {
           99: "#FFFBFE",
           100: "#FFFFFF",
         },
+
+        light: {
+          onSurfaceVariant: "#49454F",
+          surface: "#FFFBFE",
+          onSurface: "#1C1B1F",
+          error: "#B3261E",
+          onError: "#FFFFFF",
+        },
+        dark: {
+          onSurfaceVariant: "#CAC4D0",
+          surface: "#1C1B1F",
+          onSurface: "#E6E1E5",
+          error: "#F2B8B5",
+          onError: "#601410",
+        },
       },
       fontFamily: {
         inter: ["Inter", "sans-serif"],

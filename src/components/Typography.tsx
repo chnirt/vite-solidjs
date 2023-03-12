@@ -1,8 +1,10 @@
 import { ReactNode } from "react";
 import { cva, VariantProps } from "class-variance-authority";
+import classNames from "classnames";
 
 export type TypographyVariantProps = VariantProps<typeof TypographyVariants>;
 export interface ITypography {
+  className?: string;
   children: ReactNode;
 }
 /**
@@ -56,11 +58,16 @@ const TypographyVariants = cva(
 );
 
 export default function Typography({
+  className,
   variant = "dl",
   weight = "normal",
   children,
 }: TypographyProps) {
   return (
-    <span className={TypographyVariants({ variant, weight })}>{children}</span>
+    <span
+      className={classNames(TypographyVariants({ variant, weight }), className)}
+    >
+      {children}
+    </span>
   );
 }

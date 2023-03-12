@@ -1,6 +1,100 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 
 @tailwind base;
+@layer base {
+  .basefont,
+  .myfont {
+    @apply font-roboto;
+  }
+  .dl {
+    @apply text-[3.563rem] leading-[4rem];
+  }
+  .dm {
+    @apply text-[2.813rem] leading-[3.25rem];
+  }
+  .ds {
+    @apply text-[2.25rem] leading-[2.75rem];
+  }
+
+  .hl {
+    @apply text-[2rem] leading-[2.5rem];
+  }
+  .hm {
+    @apply text-[1.75rem] leading-[2.25rem];
+  }
+  .hs {
+    @apply text-[1.5rem] leading-[2rem];
+  }
+
+  .tl {
+    @apply text-[1.375rem] leading-[1.75rem];
+  }
+  .tm {
+    @apply text-[1rem] leading-[1.5rem] tracking-[0.009375rem];
+  }
+  .ts {
+    @apply text-[0.875rem] leading-[1.25rem] tracking-[0.00625rem];
+  }
+
+  .ll {
+    @apply text-[0.875rem] leading-[1.25rem] tracking-[0.00625rem];
+  }
+  .lm {
+    @apply text-[0.75rem] leading-[1rem] tracking-[0.03125rem];
+  }
+  .ls {
+    @apply text-[0.6875rem] leading-[1rem] tracking-[0.03125rem];
+  }
+
+  .bl {
+    @apply text-[1rem] leading-[1.5rem] tracking-[0.03125rem];
+  }
+  .bm {
+    @apply text-[0.875rem] leading-[1.25rem] tracking-[0.015625rem];
+  }
+  .bs {
+    @apply text-[0.75rem] leading-[1rem] tracking-[0.025rem];
+  }
+
+  .ft,
+  .f100 {
+    @apply font-thin;
+  }
+  .fxl,
+  .f200 {
+    @apply font-extralight;
+  }
+  .fl,
+  .f300 {
+    @apply font-light;
+  }
+  .fn,
+  .f400 {
+    @apply font-normal;
+  }
+  .fm,
+  .f500 {
+    @apply font-medium;
+  }
+  .fsm,
+  .f600 {
+    @apply font-semibold;
+  }
+  .fb,
+  .f700 {
+    @apply font-bold;
+  }
+  .fxb,
+  .f800 {
+    @apply font-extrabold;
+  }
+  .fbl,
+  .f900 {
+    @apply font-black;
+  }
+  /* ... */
+}
+
 @tailwind components;
 @tailwind utilities;
 

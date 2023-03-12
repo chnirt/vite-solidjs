@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import { MdDelete } from "react-icons/md";
 import { HiPlus } from "react-icons/hi";
+import Typography from "../components/Typography";
 
 const StyleGuide = () => {
   return (
@@ -8,7 +9,92 @@ const StyleGuide = () => {
       StyleGuide
       <div className="flex flex-col">
         Typography
-        <span className="font-roboto font-normal text-[3.563rem] leading-[4rem]">
+        {[
+          {
+            varient: "dl",
+            weight: "normal",
+            text: "Display Large - Roboto 57/64 . 0",
+          },
+          {
+            varient: "dm",
+            weight: "normal",
+            text: "Display Medium - Roboto 45/52 . 0",
+          },
+          {
+            varient: "ds",
+            weight: "normal",
+            text: "Display Small - Roboto 36/44 . 0",
+          },
+
+          {
+            varient: "hl",
+            weight: "normal",
+            text: "Headline Large - Roboto 32/40 . 0",
+          },
+          {
+            varient: "hm",
+            weight: "normal",
+            text: "Headline Medium - Roboto 28/36 . 0",
+          },
+          {
+            varient: "hs",
+            weight: "normal",
+            text: "Headline Small - Roboto 24/32 . 0",
+          },
+
+          {
+            varient: "tl",
+            weight: "normal",
+            text: "Title Large - Roboto Regular 22/28 . 0",
+          },
+          {
+            varient: "tm",
+            weight: "mediumn",
+            text: "Title Medium - Roboto Medium 16/24 . +0.15",
+          },
+          {
+            varient: "ts",
+            weight: "mediumn",
+            text: "Title Small - Roboto Medium 14/20 . +0.1",
+          },
+
+          {
+            varient: "ll",
+            weight: "medium",
+            text: "Label Large - Roboto Medium 14/20 . +0.1",
+          },
+          {
+            varient: "lm",
+            weight: "medium",
+            text: "Label Mediumn - Roboto Medium 12/16 . +0.5",
+          },
+          {
+            varient: "ls",
+            weight: "medium",
+            text: "Label Small - Roboto Medium 11/16 . +0.5",
+          },
+
+          {
+            varient: "bl",
+            weight: "normal",
+            text: "Body Large - Roboto 16/24 . +0.5",
+          },
+          {
+            varient: "bm",
+            weight: "normal",
+            text: "Body Medium - Roboto 14/20 . +0.25",
+          },
+          {
+            varient: "bs",
+            weight: "normal",
+            text: "Body Small - Roboto 12/16 . +0.4",
+          },
+        ].map((item, ii) => (
+          <Typography key={`typography-${ii}`} variant={item?.varient}>
+            {item.text}
+          </Typography>
+        ))}
+        {/* <span className="font-roboto font-normal text-[3.563rem] leading-[4rem]">
           Display Large - Roboto 57/64 . 0
         </span>
         <span className="font-roboto font-normal text-[2.813rem] leading-[3.25rem]">
@@ -39,7 +125,7 @@ const StyleGuide = () => {
           Label Large - Roboto Medium 14/20 . +0.1
         </span>
         <span className="font-roboto font-medium text-[0.75rem] leading-[1rem] tracking-[0.03125rem]">
-          Label Large - Roboto Medium 12/16 . +0.5
+          Label Mediumn - Roboto Medium 12/16 . +0.5
         </span>
         <span className="font-roboto font-medium text-[0.6875rem] leading-[1rem] tracking-[0.03125rem]">
           Label Small - Roboto Medium 11/16 . +0.5
@@ -52,7 +138,7 @@ const StyleGuide = () => {
         </span>
         <span className="font-roboto font-normal text-[0.75rem] leading-[1rem] tracking-[0.025rem]">
           Body Small - Roboto 12/16 . +0.4
-        </span>
+        </span> */}
       </div>
       <div className="flex flex-col">
         Color Guide
@@ -253,78 +339,78 @@ const StyleGuide = () => {
         <div className="flex flex-row">
           {[
             {
-              label: "Filled",
+              children: "Filled",
             },
             {
-              label: "Disabled Filled",
+              children: "Disabled Filled",
               disabled: true,
             },
             {
-              label: "Start Icon Filled",
+              children: "Start Icon Filled",
               startIcon: <HiPlus />,
             },
             {
-              label: "End Icon Filled",
+              children: "End Icon Filled",
               endIcon: <MdDelete />,
             },
             {
-              label: "Disabled Start Icon Filled",
+              children: "Disabled Start Icon Filled",
               startIcon: <HiPlus />,
               disabled: true,
             },
             {
-              label: "End Icon Filled",
+              children: "End Icon Filled",
               endIcon: <MdDelete />,
               disabled: true,
             },
           ].map((item, ii) => (
-            <button
-              type="button"
-              key={`button-${ii}`}
-              className={classNames(
-                "first:ml-0 ml-4",
-                "bg-primary-40 flex justify-center items-center rounded-[6.25rem] px-6 py-[0.625rem]",
-                {
-                  "hover:opacity-80": !item?.disabled,
-                  "focus:opacity-80": !item?.disabled,
-                  "active:opacity-80": !item?.disabled,
-                  "disabled:bg-neutral-10/[.12] text-neutral-10/[0.38]":
-                    item?.disabled,
-                }
-              )}
-              disabled={item?.disabled}
-            >
-              {item?.startIcon && (
-                <div
-                  className={classNames("text-white mr-2", {
-                    "text-neutral-10/[0.38]": item?.disabled,
-                  })}
-                >
-                  {item?.startIcon}
-                </div>
-              )}
-              {item?.label && (
-                <span
-                  className={classNames(
-                    "font-roboto font-medium text-[0.875rem] leading-[1.25rem] tracking-[0.00625rem] text-white",
-                    {
+            <div key={`button-${ii}`} className="first:ml-0 ml-4">
+              <button
+                type="button"
+                className={classNames(
+                  "bg-primary-40 flex justify-center items-center rounded-[6.25rem] px-6 py-[0.625rem]",
+                  {
+                    "hover:opacity-80": !item?.disabled,
+                    "focus:opacity-80": !item?.disabled,
+                    "active:opacity-80": !item?.disabled,
+                    "disabled:bg-neutral-10/[.12] text-neutral-10/[0.38]":
+                      item?.disabled,
+                  }
+                )}
+                disabled={item?.disabled}
+              >
+                {item?.startIcon && (
+                  <div
+                    className={classNames("text-white mr-2", {
                       "text-neutral-10/[0.38]": item?.disabled,
-                    }
-                  )}
-                >
-                  {item?.label}
-                </span>
-              )}
-              {item?.endIcon && (
-                <div
-                  className={classNames("text-white ml-2", {
-                    "text-neutral-10/[0.38]": item?.disabled,
-                  })}
-                >
-                  {item?.endIcon}
-                </div>
-              )}
-            </button>
+                    })}
+                  >
+                    {item?.startIcon}
+                  </div>
+                )}
+                {typeof item?.children === "string" && (
+                  <span
+                    className={classNames(
+                      "font-roboto font-medium text-[0.875rem] leading-[1.25rem] tracking-[0.00625rem] text-white",
+                      {
+                        "text-neutral-10/[0.38]": item?.disabled,
+                      }
+                    )}
+                  >
+                    {item?.children}
+                  </span>
+                )}
+                {item?.endIcon && (
+                  <div
+                    className={classNames("text-white ml-2", {
+                      "text-neutral-10/[0.38]": item?.disabled,
+                    })}
+                  >
+                    {item?.endIcon}
+                  </div>
+                )}
+              </button>
+            </div>
           ))}
         </div>
       </div>

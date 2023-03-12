@@ -4,6 +4,7 @@ import { HiPlus } from "react-icons/hi";
 import Typography from "../components/Typography";
 import { Fragment } from "react";
 import Badge from "../components/Badge";
+import Button from "../components/Button";
 
 const renderTypography = () => {
   return (
@@ -349,40 +350,28 @@ const renderBadges = () => {
           { children: undefined },
           {
             badgeContent: 0,
-            children: (
-              <MdOutlineMailOutline className="badgeIconColor" size={24} />
-            ),
+            children: <MdOutlineMailOutline size={24} />,
           },
           {
             badgeContent: 3,
-            children: (
-              <MdOutlineMailOutline className="badgeIconColor" size={24} />
-            ),
+            children: <MdOutlineMailOutline size={24} />,
           },
           {
             badgeContent: 32,
-            children: (
-              <MdOutlineMailOutline className="badgeIconColor" size={24} />
-            ),
+            children: <MdOutlineMailOutline size={24} />,
           },
           {
             badgeContent: 123,
-            children: (
-              <MdOutlineMailOutline className="badgeIconColor" size={24} />
-            ),
+            children: <MdOutlineMailOutline size={24} />,
           },
           {
             badgeContent: 678,
-            children: (
-              <MdOutlineMailOutline className="badgeIconColor" size={24} />
-            ),
+            children: <MdOutlineMailOutline size={24} />,
             max: 999,
           },
           {
             badgeContent: 1000,
-            children: (
-              <MdOutlineMailOutline className="badgeIconColor" size={24} />
-            ),
+            children: <MdOutlineMailOutline size={24} />,
             max: 999,
           },
         ].map((item, ii) => (
@@ -400,51 +389,52 @@ const renderBadges = () => {
   );
 };
 
-const StyleGuide = () => {
+const renderButtons = () => {
   return (
-    <div className="p-2">
+    <Fragment>
       <Typography variant={"ds"} weight={"black"}>
-        StyleGuide
+        Buttons
       </Typography>
-      {/* <div className="flex flex-col">{renderTypography()}</div> */}
-      {/* <div className="flex flex-col">{renderColorGuide()}</div> */}
-      {/* <div className="flex flex-col">{renderElevation()}</div> */}
-      {/* <div className="flex flex-col">{renderLayoutBreakpoint()}</div> */}
-      {/* <div className="flex flex-col">{renderBadges()}</div> */}
-      <div className="flex flex-col">
-        <Typography variant={"ds"} weight={"black"}>
-          Buttons
-        </Typography>
-        <div className="flex flex-row">
-          {[
-            {
-              children: "Filled",
-            },
-            {
-              children: "Disabled Filled",
-              disabled: true,
-            },
-            {
-              children: "Start Icon Filled",
-              startIcon: <HiPlus />,
-            },
-            {
-              children: "End Icon Filled",
-              endIcon: <MdDelete />,
-            },
-            {
-              children: "Disabled Start Icon Filled",
-              startIcon: <HiPlus />,
-              disabled: true,
-            },
-            {
-              children: "End Icon Filled",
-              endIcon: <MdDelete />,
-              disabled: true,
-            },
-          ].map((item, ii) => (
-            <div key={`button-${ii}`} className="first:ml-0 ml-4">
-              <button
+      <div className="flex flex-row">
+        {[
+          {
+            children: "Filled",
+          },
+          {
+            children: "Disabled Filled",
+            disabled: true,
+          },
+          {
+            children: "Start Icon Filled",
+            startIcon: <HiPlus />,
+          },
+          {
+            children: "End Icon Filled",
+            endIcon: <MdDelete />,
+          },
+          {
+            children: "Disabled Start Icon Filled",
+            startIcon: <HiPlus />,
+            disabled: true,
+          },
+          {
+            children: "End Icon Filled",
+            endIcon: <MdDelete />,
+            disabled: true,
+          },
+        ].map((item, ii) => (
+          <div key={`button-${ii}`} className="first:ml-0 ml-4">
+            <Button
+              onClick={() => {
+                console.log("onClick");
+              }}
+              startIcon={item?.startIcon}
+              endIcon={item?.endIcon}
+              disabled={item?.disabled}
+            >
+              {item?.children}
+            </Button>
+            {/* <button
                 type="button"
                 className={classNames(
                   "bg-primary-40 flex justify-center items-center rounded-[6.25rem] px-6 py-[0.625rem]",
@@ -452,8 +442,7 @@ const StyleGuide = () => {
                     "hover:opacity-80": !item?.disabled,
                     "focus:opacity-80": !item?.disabled,
                     "active:opacity-80": !item?.disabled,
-                    "disabled:bg-neutral-10/[.12] text-neutral-10/[0.38]":
-                      item?.disabled,
+                    "disabled:bg-neutral-10/[.12]": true,
                   }
                 )}
                 disabled={item?.disabled}
@@ -472,7 +461,7 @@ const StyleGuide = () => {
                     className={classNames(
                       "font-roboto font-medium text-[0.875rem] leading-[1.25rem] tracking-[0.00625rem] text-white",
                       {
-                        "text-neutral-10/[0.38]": item?.disabled,
+                        "text-neutral-10/[0.38] #{!important}": item?.disabled,
                       }
                     )}
                   >
@@ -488,11 +477,26 @@ const StyleGuide = () => {
                     {item?.endIcon}
                   </div>
                 )}
-              </button>
-            </div>
-          ))}
-        </div>
+              </button> */}
+          </div>
+        ))}
       </div>
+    </Fragment>
+  );
+};
+
+const StyleGuide = () => {
+  return (
+    <div className="p-2">
+      <Typography variant={"ds"} weight={"black"}>
+        StyleGuide
+      </Typography>
+      <div className="flex flex-col">{renderTypography()}</div>
+      <div className="flex flex-col">{renderColorGuide()}</div>
+      <div className="flex flex-col">{renderElevation()}</div>
+      <div className="flex flex-col">{renderLayoutBreakpoint()}</div>
+      <div className="flex flex-col">{renderBadges()}</div>
+      <div className="flex flex-col">{renderButtons()}</div>
     </div>
   );
 };

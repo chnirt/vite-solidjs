@@ -113,6 +113,8 @@ module.exports = {
         },
 
         light: {
+          primary: "#6750A4",
+          onPrimary: "#FFFFFF",
           onSurfaceVariant: "#49454F",
           surface: "#FFFBFE",
           onSurface: "#1C1B1F",
@@ -120,6 +122,8 @@ module.exports = {
           onError: "#FFFFFF",
         },
         dark: {
+          primary: "#D0BCFF",
+          onPrimary: "#381E72",
           onSurfaceVariant: "#CAC4D0",
           surface: "#1C1B1F",
           onSurface: "#E6E1E5",

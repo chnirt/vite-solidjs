@@ -12,10 +12,22 @@
     @apply bg-light-error dark:bg-dark-error;
   }
   .badgeTextColor {
-    @apply text-light-onError dark:text-dark-onError !important;
+    @apply !text-light-onError dark:text-dark-onError;
   }
   .badgeIconColor {
-    @apply text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant !important;
+    @apply !text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant;
+  }
+  .buttonBackgroundColor {
+    @apply bg-light-primary dark:bg-dark-primary;
+  }
+  .buttonIconColor {
+    @apply text-light-onPrimary dark:text-dark-onPrimary;
+  }
+  .disabledButtonBGColor {
+    @apply !bg-neutral-10/[0.12] dark:!bg-neutral-90/[0.12];
+  }
+  .disabledButtonTextColor {
+    @apply !text-neutral-10/[0.38] dark:!text-neutral-90/[0.38];
   }
 
   .basefont,

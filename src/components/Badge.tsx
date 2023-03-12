@@ -81,7 +81,7 @@ export default function Badge({
           </Typography>
         </div>
       )}
-      {children}
+      <div className="badgeIconColor">{children}</div>
     </div>
   );
 }

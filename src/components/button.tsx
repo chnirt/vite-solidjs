@@ -1,10 +1,15 @@
 import { cva, VariantProps } from "class-variance-authority";
+import classNames from "classnames";
 import { MouseEventHandler } from "react";
 import { ReactNode } from "react";
 
 export type ButtonVariantProps = VariantProps<typeof ButtonVariants>;
 export interface IButton {
+  className?: string;
+  startIcon?: ReactNode;
+  endIcon?: ReactNode;
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  disabled?: boolean;
   children?: ReactNode;
 }
 /**
@@ -13,7 +18,8 @@ export interface IButton {
 export interface ButtonProps extends ButtonVariantProps, IButton {}
 const ButtonVariants = cva(
   /* button base style */
-  "h-fit text-white uppercase transition-colors duration-150",
+  // "h-fit text-white uppercase transition-colors duration-150",
+  "",
   {
     variants: {
       /* button colors */
@@ -48,18 +54,61 @@ const ButtonVariants = cva(
 );
 
 export default function Button({
-  intent = "default",
-  size = "medium",
-  roundness = "round",
+  className,
+  startIcon,
+  endIcon,
   onClick,
+  disabled,
   children,
 }: ButtonProps) {
   return (
     <button
-      className={ButtonVariants({ intent, size, roundness })}
-      onClick={typeof onClick === "function" ? onClick : undefined}
+      type="button"
+      className={classNames(
+        "buttonBackgroundColor",
+        "flex justify-center items-center rounded-full px-6 py-[0.625rem]",
+        "disabled:disabledButtonBGColor",
+        {
+          "hover:opacity-80": !disabled,
+          "focus:opacity-80": !disabled,
+          "active:opacity-80": !disabled,
+        },
+        className
+      )}
+      disabled={disabled}
+      onClick={onClick}
     >
-      {children}
+      {startIcon && (
+        <div
+          className={classNames("buttonIconColor", "mr-2", {
+            disabledButtonTextColor: disabled,
+          })}
+        >
+          {startIcon}
+        </div>
+      )}
+      {typeof children === "string" && (
+        <span
+          className={classNames(
+            "buttonIconColor",
+            "font-roboto font-medium text-[0.875rem] leading-[1.25rem] tracking-[0.00625rem]",
+            {
+              disabledButtonTextColor: disabled,
+            }
+          )}
+        >
+          {children}
+        </span>
+      )}
+      {endIcon && (
+        <div
+          className={classNames("buttonIconColor", "ml-2", {
+            disabledButtonTextColor: disabled,
+          })}
+        >
+          {endIcon}
+        </div>
+      )}
     </button>
   );
 }

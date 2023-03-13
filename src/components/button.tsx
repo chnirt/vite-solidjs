@@ -42,6 +42,10 @@ const ButtonVariants = cva(
         round: "rounded-md",
         pill: "rounded-full",
       },
+
+      // disabled: {
+      //   true: "",
+      // },
     },
 
     // defaults

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import localforage from "localforage";
+// import localforage from "localforage";
 
 type ThemeInput = string | null;
 type CallbackType = (mothInput: ThemeInput) => void;
@@ -10,7 +10,8 @@ function useDarkMode(themeInput: ThemeInput) {
   useEffect(() => {
     (async () => {
       try {
-        const theme = await localforage.getItem("theme");
+        // const theme = await localforage.getItem("theme");
+        const theme = localStorage.getItem("theme");
         // This code runs once the value has been loaded
         // from the offline store.
 
@@ -21,8 +22,10 @@ function useDarkMode(themeInput: ThemeInput) {
             window.matchMedia("(prefers-color-scheme: dark)").matches)
         ) {
           document.documentElement.classList.add("dark");
+          setMode("dark");
         } else {
           document.documentElement.classList.remove("dark");
+          setMode("light");
         }
       } catch (err) {
         // This code runs if there were any errors.
@@ -33,16 +36,19 @@ function useDarkMode(themeInput: ThemeInput) {
   const handleSetMode = useCallback<CallbackType>(async (modeInput) => {
     switch (modeInput) {
       case "light": {
-        await localforage.setItem("theme", modeInput);
+        // await localforage.setItem("theme", modeInput);
+        localStorage.setItem("theme", modeInput);
         setMode("light");
         break;
       }
       case "dark": {
-        await localforage.setItem("theme", modeInput);
+        // await localforage.setItem("theme", modeInput);
+        localStorage.setItem("theme", modeInput);
         setMode("dark");
         break;
       }
       default: {
+        // await localforage.removeItem("theme");
         localStorage.removeItem("theme");
         setMode(null);
       }

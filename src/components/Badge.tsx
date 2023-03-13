@@ -77,7 +77,9 @@ export default function Badge({
           )}
         >
           <Typography className={"badgeTextColor"} variant={"ls"}>
-            {Number(badgeContent) > max ? String(max) + "+" : badgeContent}
+            {Number(badgeContent) > max
+              ? String(max).concat("+")
+              : badgeContent}
           </Typography>
         </div>
       )}

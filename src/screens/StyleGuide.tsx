@@ -14,87 +14,91 @@ const renderTypography = () => {
       </Typography>
       {[
         {
-          varient: "dl",
+          variant: "dl",
           weight: "normal",
-          text: "Display Large - Roboto 57/64 . 0",
+          children: "Display Large - Roboto 57/64 . 0",
         },
         {
-          varient: "dm",
+          variant: "dm",
           weight: "normal",
-          text: "Display Medium - Roboto 45/52 . 0",
+          children: "Display Medium - Roboto 45/52 . 0",
         },
         {
-          varient: "ds",
+          variant: "ds",
           weight: "normal",
-          text: "Display Small - Roboto 36/44 . 0",
+          children: "Display Small - Roboto 36/44 . 0",
         },
 
         {
-          varient: "hl",
+          variant: "hl",
           weight: "normal",
-          text: "Headline Large - Roboto 32/40 . 0",
+          children: "Headline Large - Roboto 32/40 . 0",
         },
         {
-          varient: "hm",
+          variant: "hm",
           weight: "normal",
-          text: "Headline Medium - Roboto 28/36 . 0",
+          children: "Headline Medium - Roboto 28/36 . 0",
         },
         {
-          varient: "hs",
+          variant: "hs",
           weight: "normal",
-          text: "Headline Small - Roboto 24/32 . 0",
+          children: "Headline Small - Roboto 24/32 . 0",
         },
 
         {
-          varient: "tl",
+          variant: "tl",
           weight: "normal",
-          text: "Title Large - Roboto Regular 22/28 . 0",
+          children: "Title Large - Roboto Regular 22/28 . 0",
         },
         {
-          varient: "tm",
-          weight: "mediumn",
-          text: "Title Medium - Roboto Medium 16/24 . +0.15",
-        },
-        {
-          varient: "ts",
-          weight: "mediumn",
-          text: "Title Small - Roboto Medium 14/20 . +0.1",
-        },
-
-        {
-          varient: "ll",
+          variant: "tm",
           weight: "medium",
-          text: "Label Large - Roboto Medium 14/20 . +0.1",
+          children: "Title Medium - Roboto Medium 16/24 . +0.15",
         },
         {
-          varient: "lm",
+          variant: "ts",
           weight: "medium",
-          text: "Label Mediumn - Roboto Medium 12/16 . +0.5",
-        },
-        {
-          varient: "ls",
-          weight: "medium",
-          text: "Label Small - Roboto Medium 11/16 . +0.5",
+          children: "Title Small - Roboto Medium 14/20 . +0.1",
         },
 
         {
-          varient: "bl",
-          weight: "normal",
-          text: "Body Large - Roboto 16/24 . +0.5",
+          variant: "ll",
+          weight: "medium",
+          children: "Label Large - Roboto Medium 14/20 . +0.1",
         },
         {
-          varient: "bm",
-          weight: "normal",
-          text: "Body Medium - Roboto 14/20 . +0.25",
+          variant: "lm",
+          weight: "medium",
+          children: "Label Medium - Roboto Medium 12/16 . +0.5",
         },
         {
-          varient: "bs",
-          weight: "normal",
-          text: "Body Small - Roboto 12/16 . +0.4",
+          variant: "ls",
+          weight: "medium",
+          children: "Label Small - Roboto Medium 11/16 . +0.5",
         },
-      ].map((item, ii) => (
-        <Typography key={`typography-${ii}`} variant={item?.varient}>
-          {item.text}
+
+        {
+          variant: "bl",
+          weight: "normal",
+          children: "Body Large - Roboto 16/24 . +0.5",
+        },
+        {
+          variant: "bm",
+          weight: "normal",
+          children: "Body Medium - Roboto 14/20 . +0.25",
+        },
+        {
+          variant: "bs",
+          weight: "normal",
+          children: "Body Small - Roboto 12/16 . +0.4",
+        },
+      ].map((item: any, ii: number) => (
+        <Typography
+          key={`typography-${ii}`}
+          variant={item?.variant}
+          weight={item?.weight}
+        >
+          {item?.text}
         </Typography>
       ))}
       {/* <span className="font-roboto font-normal text-[3.563rem] leading-[4rem]">
@@ -128,7 +132,7 @@ const renderTypography = () => {
           Label Large - Roboto Medium 14/20 . +0.1
         </span>
         <span className="font-roboto font-medium text-[0.75rem] leading-[1rem] tracking-[0.03125rem]">
-          Label Mediumn - Roboto Medium 12/16 . +0.5
+          Label Medium - Roboto Medium 12/16 . +0.5
         </span>
         <span className="font-roboto font-medium text-[0.6875rem] leading-[1rem] tracking-[0.03125rem]">
           Label Small - Roboto Medium 11/16 . +0.5
@@ -334,7 +338,7 @@ const renderLayoutBreakpoint = () => {
       <Typography variant={"ds"} weight={"black"}>
         Layout Breakpoint
       </Typography>
-      <div className="border h-20 extraLarge:bg-primary-10 large:bg-primary-30 medium:bg-primary-50 small:bg-primary-70" />
+      <div className="h-20 extraLarge:bg-primary-10 large:bg-primary-30 medium:bg-primary-50 small:bg-primary-70" />
     </Fragment>
   );
 };

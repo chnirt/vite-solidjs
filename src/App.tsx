@@ -2,13 +2,8 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 
-import StyleGuide from "./screens/StyleGuide";
-import Provider from "./providers";
-
 function App() {
   const [count, setCount] = useState(0);
-
-  return <Provider />;
 
   return (
     <div className="App">

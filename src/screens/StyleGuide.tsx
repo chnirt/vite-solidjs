@@ -2,9 +2,10 @@ import classNames from "classnames";
 import { MdDelete, MdOutlineMailOutline } from "react-icons/md";
 import { HiPlus } from "react-icons/hi";
 import Typography from "../components/Typography";
-import { Fragment } from "react";
+import { Fragment, useCallback } from "react";
 import Badge from "../components/Badge";
 import Button from "../components/Button";
+import useDarkMode from "../hooks/useMode";
 
 const renderTypography = () => {
   return (
@@ -490,8 +491,16 @@ const renderButtons = () => {
 };
 
 const StyleGuide = () => {
+  const [mode, setMode] = useDarkMode("light");
+
+  const toggleMode = useCallback(() => {
+    const newMode = mode === "light" ? "dark" : "light";
+    setMode(newMode);
+  }, [mode, setMode]);
+
   return (
     <div className="p-2">
+      <Button onClick={toggleMode}>{mode === "dark" && "*"} dark</Button>
       <a
         href="https://www.figma.com/community/file/1035203688168086460"
         target={"_blank"}

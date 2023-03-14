@@ -91,7 +91,7 @@ export default function Button({
           {startIcon}
         </div>
       )}
-      {typeof children === "string" && (
+      {children && (
         <span
           className={classNames(
             "buttonIconColor",

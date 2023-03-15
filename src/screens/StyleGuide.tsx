@@ -99,7 +99,7 @@ const renderTypography = () => {
           variant={item?.variant}
           weight={item?.weight}
         >
-          {item?.text}
+          {item?.children}
         </Typography>
       ))}
       {/* <span className="font-roboto font-normal text-[3.563rem] leading-[4rem]">

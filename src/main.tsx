@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -8,13 +8,15 @@ import { AuthProvider } from "./hooks/useAuth";
 import { router } from "./routes/router";
 import { queryClient } from "./gql/queryClient";
 import "./index.css";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <RouterProvider router={router} />
+        <Suspense fallback={<div>loading</div>}>
+          <RouterProvider router={router} />
+        </Suspense>
       </AuthProvider>
     </QueryClientProvider>
     <ToastContainer />

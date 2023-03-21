@@ -35,7 +35,9 @@
     "react-icons": "^4.8.0",
     "react-router-dom": "^6.9.0",
     "react-toastify": "^9.1.1",
-    "sort-by": "^1.2.0"
+    "sort-by": "^1.2.0",
+    "zustand": "^4.3.6",
+    "zustand-middleware-computed-state": "^0.1.0"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.0.0-rc.1",

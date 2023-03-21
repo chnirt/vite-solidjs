@@ -10,6 +10,7 @@ const Register = () => {
   return (
     <Fragment>
       Register Page
+      <br />
       <a onClick={navigateLogin}>Back to login</a>
     </Fragment>
   );

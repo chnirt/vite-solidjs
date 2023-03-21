@@ -6,11 +6,11 @@ import get from "lodash/get";
 import Button from "../components/Button";
 import { user } from "../constants";
 import { graphQLClient, request } from "../gql/queryClient";
-import { useAuth } from "../hooks/useAuth";
 import { paths } from "../routes/constant";
+import { useAuthenticateStore } from "../global/authenticateSlice";
 
 const Login = () => {
-  const { login } = useAuth();
+  const { setLoading, setTokens } = useAuthenticateStore();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState(user.email ?? null);
@@ -45,6 +45,7 @@ const Login = () => {
   });
 
   const handleLogin = useCallback(() => {
+    setLoading(true);
     const loginUserInput = {
       email,
       password: pwd,
@@ -57,10 +58,11 @@ const Login = () => {
           graphQLClient.setHeaders({
             authorization: `Bearer ${accessToken}`,
           });
-          login({
+          setTokens({
             accessToken,
             refreshToken,
           });
+          setLoading(false);
         }
       },
       // onError(error) {
@@ -80,6 +82,7 @@ const Login = () => {
   return (
     <Fragment>
       Login Page
+      <br />
       <input
         type="email"
         value={email}

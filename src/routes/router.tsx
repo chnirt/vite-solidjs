@@ -1,20 +1,29 @@
-import { createBrowserRouter, Navigate, NavLink, Outlet } from "react-router-dom";
+import { lazy } from "react";
+import {
+  createBrowserRouter,
+  Navigate,
+  NavLink,
+  Outlet,
+} from "react-router-dom";
+import { useAuthenticateStore } from "../global/authenticateSlice";
 
-import { useAuth } from "../hooks/useAuth";
 import { paths } from "../routes/constant";
 
-import Dashboard from "../screens/Dashboard";
-import Error from "../screens/Error";
-import Login from "../screens/Login";
-import Policy from "../screens/Policy";
-import Register from "../screens/Register";
-import Root from "../screens/Root";
-import StyleGuide from "../screens/StyleGuide";
-import Todos from "../screens/Todos";
+const Dashboard = lazy(() => import("../screens/Dashboard"));
+const Error = lazy(() => import("../screens/Error"));
+const Login = lazy(() => import("../screens/Login"));
+const Policy = lazy(() => import("../screens/Policy"));
+const Register = lazy(() => import("../screens/Register"));
+const Root = lazy(() => import("../screens/Root"));
+const StyleGuide = lazy(() => import("../screens/StyleGuide"));
+const Todos = lazy(() => import("../screens/Todos"));
 
 const Private = () => {
-  const { isAuth } = useAuth();
-  return !isAuth ? (
+  // const isAuth = useAuthenticateStore(
+  //   (state) => Boolean(state.accessToken) && Boolean(state.refreshToken)
+  // );
+  const isSignedIn = useAuthenticateStore((state) => state.isSignedIn);
+  return !isSignedIn ? (
     <Navigate
       to={{
         pathname: "/login",
@@ -26,8 +35,11 @@ const Private = () => {
 };
 
 const Public = () => {
-  const { isAuth } = useAuth();
-  return isAuth ? (
+  // const isAuth = useAuthenticateStore(
+  //   (state) => Boolean(state.accessToken) && Boolean(state.refreshToken)
+  // );
+  const isSignedIn = useAuthenticateStore((state) => state.isSignedIn);
+  return isSignedIn ? (
     <Navigate
       to={{
         pathname: "/",
@@ -57,67 +69,62 @@ const Admin = () => {
   );
 };
 
-export const router = createBrowserRouter(
-  [
-    {
-      element: <Root />,
-      errorElement: <Error />,
-      children: [
-        {
-          element: <Private />,
-          children: [
-            {
-              path: paths.dashboard,
-              element: <Dashboard />,
-              children: [
-                {
-                  path: paths.styleGuide,
-                  element: <StyleGuide />,
-                },
-                {
-                    path: paths.todos,
-                    element: <Todos />,
-                  },
-              ],
-            },
-            {
-              path: paths.admin,
-              element: <Admin />,
-              children: [
-                {
-                  path: paths.adminTodos,
-                  element: <Todos />,
-                },
-              ],
-            },
-          ],
-        },
-        {
-          element: <Public />,
-          children: [
-            {
-              path: paths.login,
-              element: <Login />,
-            },
-            {
-              path: paths.register,
-              element: <Register />,
-            },
-          ],
-        },
-        {
-          element: <Common />,
-          children: [
-            {
-              path: paths.policy,
-              element: <Policy />,
-            },
-          ],
-        },
-      ],
-    },
-  ]
-  // {
-  //   basename: "/chnirt",
-  // }
-);
+export const router = createBrowserRouter([
+  {
+    element: <Root />,
+    errorElement: <Error />,
+    children: [
+      {
+        element: <Private />,
+        children: [
+          {
+            path: paths.dashboard,
+            element: <Dashboard />,
+            children: [
+              {
+                path: paths.styleGuide,
+                element: <StyleGuide />,
+              },
+              {
+                path: paths.todos,
+                element: <Todos />,
+              },
+            ],
+          },
+          {
+            path: paths.admin,
+            element: <Admin />,
+            children: [
+              {
+                path: paths.adminTodos,
+                element: <Todos />,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        element: <Public />,
+        children: [
+          {
+            path: paths.login,
+            element: <Login />,
+          },
+          {
+            path: paths.register,
+            element: <Register />,
+          },
+        ],
+      },
+      {
+        element: <Common />,
+        children: [
+          {
+            path: paths.policy,
+            element: <Policy />,
+          },
+        ],
+      },
+    ],
+  },
+]);

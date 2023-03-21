@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { gql } from "graphql-request";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import Button from "../components/Button";
 import Navbar from "../components/Navbar";
+import { useAuthenticateStore } from "../global/authenticateSlice";
 import { request } from "../gql/queryClient";
-import { useAuth } from "../hooks/useAuth";
 
 const useProfile = () => {
   const profileQuery = gql`
@@ -47,11 +47,17 @@ const useProfile = () => {
 };
 
 const Dashboard = () => {
-  const { isLoading, isError, data, error, isFetching } = useProfile();
-  const { logout } = useAuth();
+  const accessToken = useAuthenticateStore((state) => state.accessToken);
+  const { isLoading, isError, data, error, isFetching, refetch } = useProfile();
+  const { removeTokens } = useAuthenticateStore();
   const handleLogout = useCallback(() => {
-    logout();
+    removeTokens();
   }, []);
+  useEffect(() => {
+    if (accessToken) {
+      refetch();
+    }
+  }, [accessToken]);
   return (
     <div>
       <Navbar />

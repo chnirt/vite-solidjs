@@ -1,6 +1,12 @@
+import { useLayoutEffect } from "react";
 import { Outlet } from "react-router-dom";
+import { useAuthenticateStore } from "../global/authenticateSlice";
 
 const Root = () => {
+  const { checkTokens } = useAuthenticateStore();
+  useLayoutEffect(() => {
+    checkTokens();
+  }, []);
   return (
     <div className="container">
       <Outlet />

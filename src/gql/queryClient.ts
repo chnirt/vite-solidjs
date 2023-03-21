@@ -8,6 +8,7 @@ import {
 import { RequestConfig } from "graphql-request/build/esm/types";
 import get from "lodash/get";
 import { toast } from "react-toastify";
+import { useAuthenticateStore } from "../global/authenticateSlice";
 
 // Create a client
 export const queryClient = new QueryClient();
@@ -19,7 +20,9 @@ const requestConfig: RequestConfig = {
   // credentials: `include`,
   // mode: `cors`,
   headers: {
-    authorization: `Bearer ${tokenLocalStorage}`,
+    ...(tokenLocalStorage
+      ? { authorization: `Bearer ${tokenLocalStorage}` }
+      : {}),
   },
 };
 
@@ -70,13 +73,20 @@ const handleRefreshToken = async () => {
     );
     const newAccessToken = get(data, ["refreshToken", "accessToken"]);
     const newRefreshToken = get(data, ["refreshToken", "refreshToken"]);
+    useAuthenticateStore.setState({
+      accessToken: newAccessToken,
+      refreshToken: newRefreshToken,
+    });
     localStorage.setItem("access-token", newAccessToken);
     localStorage.setItem("refresh-token", newRefreshToken);
     graphQLClient.setHeaders({
       authorization: `Bearer ${newAccessToken}`,
     });
   } catch (error) {
-    // TODO: logout -> remove token
+    useAuthenticateStore.setState({
+      accessToken: null,
+      refreshToken: null,
+    });
     localStorage.removeItem("access-token");
     localStorage.removeItem("refresh-token");
     throw error;

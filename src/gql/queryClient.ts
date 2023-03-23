@@ -8,20 +8,22 @@ import {
 import { RequestConfig } from "graphql-request/build/esm/types";
 import get from "lodash/get";
 import { toast } from "react-toastify";
+import { env } from "../constants";
 import { useAuthenticateStore } from "../global/authenticateSlice";
 
 // Create a client
 export const queryClient = new QueryClient();
 
-const tokenLocalStorage = localStorage.getItem("access-token");
+const accessTokenLocalStorage = localStorage.getItem("access-token");
 
-const endpoint: string = "https://07cin.sse.codesandbox.io";
+const endpoint: string =
+  env.VITE_ROOT_URL ?? "https://07cin.sse.codesandbox.io";
 const requestConfig: RequestConfig = {
   // credentials: `include`,
   // mode: `cors`,
   headers: {
-    ...(tokenLocalStorage
-      ? { authorization: `Bearer ${tokenLocalStorage}` }
+    ...(accessTokenLocalStorage
+      ? { authorization: `Bearer ${accessTokenLocalStorage}` }
       : {}),
   },
 };

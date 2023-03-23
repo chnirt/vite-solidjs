@@ -1,7 +1,6 @@
 import { cva, VariantProps } from "class-variance-authority";
-import classNames from "classnames";
-import { MouseEventHandler } from "react";
-import { ReactNode } from "react";
+import clsx from "clsx";
+import { MouseEventHandler, ReactNode } from "react";
 
 export type ButtonVariantProps = VariantProps<typeof ButtonVariants>;
 export interface IButton {
@@ -9,13 +8,12 @@ export interface IButton {
   startIcon?: ReactNode;
   endIcon?: ReactNode;
   onClick?: MouseEventHandler<HTMLButtonElement>;
-  disabled?: boolean;
   children?: ReactNode;
 }
 /**
  * Button
  */
-export interface ButtonProps extends ButtonVariantProps, IButton {}
+export interface ButtonProps extends ButtonVariantProps, IButton { }
 const ButtonVariants = cva(
   /* button base style */
   // "h-fit text-white uppercase transition-colors duration-150",
@@ -43,16 +41,18 @@ const ButtonVariants = cva(
         pill: "rounded-full",
       },
 
-      // disabled: {
-      //   true: "",
-      // },
+      disabled: {
+        true: "disabledButtonBGColor",
+        false: "hover:opacity-80 focus:opacity-80 active:opacity-80",
+      },
     },
 
     // defaults
     defaultVariants: {
-      intent: "default",
-      size: "medium",
-      roundness: "round",
+      // intent: "default",
+      // size: "medium",
+      // roundness: "round",
+      disabled: false
     },
   }
 );
@@ -64,27 +64,23 @@ export default function Button({
   onClick,
   disabled,
   children,
+  ...props
 }: ButtonProps) {
   return (
     <button
       type="button"
-      className={classNames(
+      className={clsx(
         "buttonBackgroundColor",
         "flex justify-center items-center rounded-full px-6 py-[0.625rem]",
-        "disabled:disabledButtonBGColor",
-        {
-          "hover:opacity-80": !disabled,
-          "focus:opacity-80": !disabled,
-          "active:opacity-80": !disabled,
-        },
+        ButtonVariants({ disabled, ...props }),
         className
       )}
-      disabled={disabled}
+      disabled={Boolean(disabled)}
       onClick={onClick}
     >
       {startIcon && (
         <div
-          className={classNames("buttonIconColor", "mr-2", {
+          className={clsx("buttonIconColor", "mr-2", {
             disabledButtonTextColor: disabled,
           })}
         >
@@ -93,7 +89,7 @@ export default function Button({
       )}
       {children && (
         <span
-          className={classNames(
+          className={clsx(
             "buttonIconColor",
             "font-roboto font-medium text-[0.875rem] leading-[1.25rem] tracking-[0.00625rem]",
             {
@@ -106,7 +102,7 @@ export default function Button({
       )}
       {endIcon && (
         <div
-          className={classNames("buttonIconColor", "ml-2", {
+          className={clsx("buttonIconColor", "ml-2", {
             disabledButtonTextColor: disabled,
           })}
         >

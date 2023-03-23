@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import clsx from "clsx";
 import { MdDelete, MdOutlineMailOutline } from "react-icons/md";
 import { HiPlus } from "react-icons/hi";
 import Typography from "../components/Typography";
@@ -161,7 +161,7 @@ const renderColorGuide = () => {
         {[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 95, 99, 100].map((item) => (
           <div
             key={`color-primary-${item}`}
-            className={classNames("flex justify-center w-20 h-20", {
+            className={clsx("flex justify-center w-20 h-20", {
               "bg-primary-0 text-white": item == 0,
               "bg-primary-10 text-white": item == 10,
               "bg-primary-20 text-white": item == 20,
@@ -185,7 +185,7 @@ const renderColorGuide = () => {
         {[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 95, 99, 100].map((item) => (
           <div
             key={`color-secondary-${item}`}
-            className={classNames("flex justify-center w-20 h-20", {
+            className={clsx("flex justify-center w-20 h-20", {
               "bg-secondary-0 text-white": item == 0,
               "bg-secondary-10 text-white": item == 10,
               "bg-secondary-20 text-white": item == 20,
@@ -209,7 +209,7 @@ const renderColorGuide = () => {
         {[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 95, 99, 100].map((item) => (
           <div
             key={`color-tertiary-${item}`}
-            className={classNames("flex justify-center w-20 h-20", {
+            className={clsx("flex justify-center w-20 h-20", {
               "bg-tertiary-0 text-white": item == 0,
               "bg-tertiary-10 text-white": item == 10,
               "bg-tertiary-20 text-white": item == 20,
@@ -233,7 +233,7 @@ const renderColorGuide = () => {
         {[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 95, 99, 100].map((item) => (
           <div
             key={`color-error-${item}`}
-            className={classNames("flex justify-center w-20 h-20", {
+            className={clsx("flex justify-center w-20 h-20", {
               "bg-error-0 text-white": item == 0,
               "bg-error-10 text-white": item == 10,
               "bg-error-20 text-white": item == 20,
@@ -257,7 +257,7 @@ const renderColorGuide = () => {
         {[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 95, 99, 100].map((item) => (
           <div
             key={`color-neutral-${item}`}
-            className={classNames("flex justify-center w-20 h-20", {
+            className={clsx("flex justify-center w-20 h-20", {
               "bg-neutral-0 text-white": item == 0,
               "bg-neutral-10 text-white": item == 10,
               "bg-neutral-20 text-white": item == 20,
@@ -281,7 +281,7 @@ const renderColorGuide = () => {
         {[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 95, 99, 100].map((item) => (
           <div
             key={`color-neutralVariant-${item}`}
-            className={classNames("flex justify-center w-20 h-20", {
+            className={clsx("flex justify-center w-20 h-20", {
               "bg-neutralVariant-0 text-white": item == 0,
               "bg-neutralVariant-10 text-white": item == 10,
               "bg-neutralVariant-20 text-white": item == 20,
@@ -315,7 +315,7 @@ const renderElevation = () => {
         {[0, 1, 2, 3, 4].map((item) => (
           <div
             key={`elevation-${item}`}
-            className={classNames(
+            className={clsx(
               "first:ml-0 ml-4",
               "w-[12.5rem] h-[12.5rem] rounded-[1rem] bg-[#FFFBFE]",
               {
@@ -441,7 +441,7 @@ const renderButtons = () => {
             </Button>
             {/* <button
                 type="button"
-                className={classNames(
+                className={clsx(
                   "bg-primary-40 flex justify-center items-center rounded-[6.25rem] px-6 py-[0.625rem]",
                   {
                     "hover:opacity-80": !item?.disabled,
@@ -454,7 +454,7 @@ const renderButtons = () => {
               >
                 {item?.startIcon && (
                   <div
-                    className={classNames("text-white mr-2", {
+                    className={clsx("text-white mr-2", {
                       "text-neutral-10/[0.38]": item?.disabled,
                     })}
                   >
@@ -463,7 +463,7 @@ const renderButtons = () => {
                 )}
                 {typeof item?.children === "string" && (
                   <span
-                    className={classNames(
+                    className={clsx(
                       "font-roboto font-medium text-[0.875rem] leading-[1.25rem] tracking-[0.00625rem] text-white",
                       {
                         "text-neutral-10/[0.38] #{!important}": item?.disabled,
@@ -475,7 +475,7 @@ const renderButtons = () => {
                 )}
                 {item?.endIcon && (
                   <div
-                    className={classNames("text-white ml-2", {
+                    className={clsx("text-white ml-2", {
                       "text-neutral-10/[0.38]": item?.disabled,
                     })}
                   >

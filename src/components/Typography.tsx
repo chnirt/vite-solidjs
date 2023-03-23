@@ -1,5 +1,5 @@
 import { cva, VariantProps } from "class-variance-authority";
-import classNames from "classnames";
+import clsx from "clsx";
 
 const TypographyVariants = cva(
   /* Typography base style */
@@ -64,7 +64,7 @@ const Typography: React.FC<TypographyProps> = ({
 }) => {
   return (
     <span
-      className={classNames(TypographyVariants({ variant, weight }), className)}
+      className={clsx(TypographyVariants({ variant, weight, ...props }), className)}
       {...props}
     >
       {children}

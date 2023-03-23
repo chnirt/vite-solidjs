@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { cva, VariantProps } from "class-variance-authority";
-import classNames from "classnames";
+import clsx from 'clsx'
 import Typography from "./Typography";
 
 export type BadgeVariantProps = VariantProps<typeof BadgeVariants>;
@@ -13,7 +13,7 @@ export interface IBadge {
 /**
  * Badge
  */
-export interface BadgeProps extends BadgeVariantProps, IBadge {}
+export interface BadgeProps extends BadgeVariantProps, IBadge { }
 const BadgeVariants = cva(
   /* Badge base style */
   "basefont",
@@ -67,10 +67,10 @@ export default function Badge({
   children,
 }: BadgeProps) {
   return (
-    <div className={classNames("relative", className)}>
+    <div className={clsx("relative", className)}>
       {Number(badgeContent) > 0 && (
         <div
-          className={classNames(
+          className={clsx(
             "absolute -top-2 -right-2 z-10",
             "min-w-[1rem] h-4 px-1 rounded-full inline-flex justify-center items-center",
             "badgeBackgroundColor"

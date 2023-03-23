@@ -22,9 +22,11 @@
     "env:open": "npx dotenv-vault open",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "tw:scan": "npx tailwindcss -i ./src/index.css -o ./dist/output.css --watch"
+    "tw:scan": "npx tailwindcss -i ./src/index.css -o ./dist/output.css --watch",
+    "codegen": "graphql-codegen --require dotenv/config --config codegen.ts"
   },
   "dependencies": {
+    "@graphql-typed-document-node/core": "^3.2.0",
     "@tanstack/react-query": "^4.26.1",
     "class-variance-authority": "^0.4.0",
     "clsx": "^1.2.1",
@@ -43,6 +45,8 @@
     "zustand-middleware-computed-state": "^0.1.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "3.2.2",
+    "@graphql-codegen/client-preset": "2.1.1",
     "@storybook/addon-essentials": "^7.0.0-rc.1",
     "@storybook/addon-interactions": "^7.0.0-rc.1",
     "@storybook/addon-links": "^7.0.0-rc.1",
@@ -52,6 +56,7 @@
     "@storybook/react-vite": "^7.0.0-rc.1",
     "@storybook/testing-library": "^0.0.14-next.1",
     "@types/lodash": "^4.14.191",
+    "@types/node": "^18.15.5",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-react-swc": "^3.2.0",
@@ -60,7 +65,7 @@
     "prop-types": "^15.8.1",
     "storybook": "^7.0.0-rc.1",
     "tailwindcss": "^3.2.7",
-    "typescript": "^4.9.3",
+    "typescript": "^4.9.5",
     "vite": "^4.1.0"
   }
 }

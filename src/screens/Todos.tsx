@@ -1,21 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
-import { gql } from "graphql-request";
 import { useState } from "react";
+import { graphql } from "../gql";
 import { request } from "../gql/queryClient";
 
 const useHello = (name: string) => {
-  const helloQuery = gql`
+  const helloQuery = graphql(`
     query Query($name: String!) {
       hello(name: $name)
     }
-  `;
-  type Hello = {
-    hello: string;
-  };
-  return useQuery<Hello, Error>(
+  `);
+  return useQuery<unknown, Error>(
     ["hello", name],
     async () => {
-      const data = (await request(helloQuery, { name })) as Hello;
+      const data = await request(helloQuery, { name });
       return data;
     },
     {

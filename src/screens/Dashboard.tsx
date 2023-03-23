@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import { gql } from "graphql-request";
 import { useCallback, useEffect } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import Button from "../components/Button";
 import Navbar from "../components/Navbar";
 import { useAuthenticateStore } from "../global/authenticateSlice";
+import { graphql } from "../gql";
 import { request } from "../gql/queryClient";
 
 const useProfile = () => {
-  const profileQuery = gql`
+  const profileQuery = graphql(`
     query Profile {
       profile {
         _id
@@ -21,23 +21,11 @@ const useProfile = () => {
         twoFactorSecret
       }
     }
-  `;
-  type Profile = {
-    profile: {
-      _id: string;
-      email: string;
-      password: string;
-      firstName: string;
-      lastName: string;
-      sex: boolean;
-      twoFactorEnabled: boolean;
-      twoFactorSecret: boolean;
-    };
-  };
-  return useQuery<Profile, Error>(
+  `);
+  return useQuery<unknown, Error>(
     ["profile"],
-    async (): Promise<Profile> => {
-      const data = (await request(profileQuery)) as Profile;
+    async () => {
+      const data = await request(profileQuery);
       return data;
     },
     {

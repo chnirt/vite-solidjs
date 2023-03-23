@@ -1,5 +1,4 @@
 import { useMutation } from "@tanstack/react-query";
-import { gql } from "graphql-request";
 import { Fragment, useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import get from "lodash/get";
@@ -8,6 +7,8 @@ import { user } from "../constants";
 import { graphQLClient, request } from "../gql/queryClient";
 import { paths } from "../routes/constant";
 import { useAuthenticateStore } from "../global/authenticateSlice";
+import { graphql } from "../gql";
+import { LoginUserInput } from "../gql/graphql";
 
 const Login = () => {
   const { setLoading, setTokens } = useAuthenticateStore();
@@ -16,13 +17,9 @@ const Login = () => {
   const [email, setEmail] = useState(user.email ?? null);
   const [pwd, setPwd] = useState(user.pwd ?? null);
 
-  interface UserInput {
-    email: string;
-    password: string;
-  }
   const mutation = useMutation({
-    mutationFn: async (loginUserInput: UserInput) => {
-      const loginMutation = gql`
+    mutationFn: async (loginUserInput: LoginUserInput) => {
+      const loginMutation = graphql(`
         mutation Mutation($loginUserInput: LoginUserInput) {
           login(loginUserInput: $loginUserInput) {
             ... on LoginBasicResponse {
@@ -32,14 +29,11 @@ const Login = () => {
             }
           }
         }
-      `;
+      `);
       const variables = {
         loginUserInput,
       };
-      interface TData {
-        login: { accessToken: string; refreshToken: string };
-      }
-      const data = await request<TData>(loginMutation, variables);
+      const data = await request(loginMutation, variables);
       return data;
     },
   });

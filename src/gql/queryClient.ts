@@ -1,23 +1,19 @@
+import { TypedDocumentNode } from "@graphql-typed-document-node/core";
 import { QueryClient } from "@tanstack/react-query";
-import {
-  gql,
-  GraphQLClient,
-  RequestDocument,
-  Variables,
-} from "graphql-request";
+import { GraphQLClient, RequestDocument, Variables } from "graphql-request";
 import { RequestConfig } from "graphql-request/build/esm/types";
 import get from "lodash/get";
 import { toast } from "react-toastify";
 import { env } from "../constants";
 import { useAuthenticateStore } from "../global/authenticateSlice";
+import { graphql } from "./gql";
 
 // Create a client
 export const queryClient = new QueryClient();
 
 const accessTokenLocalStorage = localStorage.getItem("access-token");
 
-const endpoint: string =
-  env.VITE_ROOT_URL ?? "https://07cin.sse.codesandbox.io";
+const endpoint: string = env.VITE_ROOT_URL;
 const requestConfig: RequestConfig = {
   // credentials: `include`,
   // mode: `cors`,
@@ -30,8 +26,8 @@ const requestConfig: RequestConfig = {
 
 export const graphQLClient = new GraphQLClient(endpoint, requestConfig);
 
-export const request = async <TData>(
-  query: RequestDocument,
+export const request = async (
+  query: RequestDocument | TypedDocumentNode<unknown, Variables>,
   variables?: Variables | undefined,
   requestHeaders?: Record<string, string>
 ) => {
@@ -40,11 +36,7 @@ export const request = async <TData>(
     //   authorization: `Bearer MY_TOKEN_2`,
     //   "x-custom": `foo`,
     // };
-    const data = await graphQLClient.request<TData>(
-      query,
-      variables,
-      requestHeaders
-    );
+    const data = await graphQLClient.request(query, variables, requestHeaders);
     return data;
   } catch (error) {
     handleError(error);
@@ -53,7 +45,7 @@ export const request = async <TData>(
 
 const handleRefreshToken = async () => {
   try {
-    const refreshTokenMutation = gql`
+    const refreshTokenMutation = graphql(`
       mutation Mutation($refreshToken: String!) {
         refreshToken(refreshToken: $refreshToken) {
           accessToken
@@ -61,7 +53,7 @@ const handleRefreshToken = async () => {
           tenantId
         }
       }
-    `;
+    `) as RequestDocument | TypedDocumentNode<unknown, Variables>;
     const refreshTokenLocalStorage = localStorage.getItem("refresh-token");
     const variables = {
       refreshToken: refreshTokenLocalStorage,
@@ -69,10 +61,7 @@ const handleRefreshToken = async () => {
     interface TData {
       login: { accessToken: string; refreshToken: string };
     }
-    const data = await graphQLClient.request<TData>(
-      refreshTokenMutation,
-      variables
-    );
+    const data = await graphQLClient.request(refreshTokenMutation, variables);
     const newAccessToken = get(data, ["refreshToken", "accessToken"]);
     const newRefreshToken = get(data, ["refreshToken", "refreshToken"]);
     useAuthenticateStore.setState({

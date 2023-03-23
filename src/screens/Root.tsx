@@ -8,7 +8,7 @@ const Root = () => {
     checkTokens();
   }, []);
   return (
-    <div className="container">
+    <div>
       <Outlet />
     </div>
   );

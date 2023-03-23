@@ -2,7 +2,7 @@
 
 @tailwind base;
 @layer base {
-  .container {
+  body {
     @apply bg-light-surface dark:bg-dark-surface;
   }
   .textcolor {

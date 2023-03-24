@@ -8,7 +8,7 @@ import { graphQLClient, request } from "../gql/queryClient";
 import { paths } from "../routes/constant";
 import { useAuthenticateStore } from "../global/authenticateSlice";
 import { graphql } from "../gql";
-import { LoginUserInput } from "../gql/graphql";
+import { LoginUserInput, MutationLoginArgs } from "../gql/graphql";
 
 const Login = () => {
   const { setLoading, setTokens } = useAuthenticateStore();
@@ -30,7 +30,7 @@ const Login = () => {
           }
         }
       `);
-      const variables = {
+      const variables: MutationLoginArgs = {
         loginUserInput,
       };
       const data = await request(loginMutation, variables);

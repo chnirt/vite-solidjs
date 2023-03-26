@@ -8,7 +8,7 @@ import { graphQLClient, request } from "../gql/queryClient";
 import { paths } from "../routes/constant";
 import { useAuthenticateStore } from "../global/authenticateSlice";
 import { graphql } from "../gql";
-import { LoginUserInput, MutationLoginArgs } from "../gql/graphql";
+import { AuthMutationsLoginArgs } from "../gql/graphql";
 
 const Login = () => {
   const { setLoading, setTokens } = useAuthenticateStore();
@@ -18,22 +18,19 @@ const Login = () => {
   const [pwd, setPwd] = useState(user.pwd ?? null);
 
   const mutation = useMutation({
-    mutationFn: async (loginUserInput: LoginUserInput) => {
+    mutationFn: async (loginUserInput: AuthMutationsLoginArgs) => {
       const loginMutation = graphql(`
-        mutation Mutation($loginUserInput: LoginUserInput) {
-          login(loginUserInput: $loginUserInput) {
-            ... on LoginBasicResponse {
+        mutation Login($email: String!, $password: String!) {
+          auth {
+            login(email: $email, password: $password) {
               accessToken
               refreshToken
-              tenantId
+              isSentMFACode
             }
           }
         }
       `);
-      const variables: MutationLoginArgs = {
-        loginUserInput,
-      };
-      const data = await request(loginMutation, variables);
+      const data = await request(loginMutation, loginUserInput);
       return data;
     },
   });
@@ -46,8 +43,9 @@ const Login = () => {
     };
     mutation.mutate(loginUserInput, {
       onSuccess(data) {
-        const accessToken = get(data, ["login", "accessToken"]);
-        const refreshToken = get(data, ["login", "refreshToken"]);
+        console.log(data)
+        const accessToken = get(data, ["auth", "login", "accessToken"]);
+        const refreshToken = get(data, ["auth", "login", "refreshToken"]);
         if (accessToken && refreshToken) {
           graphQLClient.setHeaders({
             authorization: `Bearer ${accessToken}`,

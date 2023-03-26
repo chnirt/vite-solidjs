@@ -13,7 +13,7 @@ export const queryClient = new QueryClient();
 
 const accessTokenLocalStorage = localStorage.getItem("access-token");
 
-const endpoint: string = env.VITE_ROOT_URL;
+const endpoint: string = env.VITE_BASE_URL;
 const requestConfig: RequestConfig = {
   // credentials: `include`,
   // mode: `cors`,

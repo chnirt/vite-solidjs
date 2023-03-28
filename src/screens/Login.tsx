@@ -14,8 +14,8 @@ const Login = () => {
   const { setLoading, setTokens } = useAuthenticateStore();
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState(user.email ?? null);
-  const [pwd, setPwd] = useState(user.pwd ?? null);
+  const [email, setEmail] = useState(user.email ?? "");
+  const [pwd, setPwd] = useState(user.pwd ?? "");
 
   const mutation = useMutation({
     mutationFn: async (loginUserInput: AuthMutationsLoginArgs) => {
@@ -43,7 +43,7 @@ const Login = () => {
     };
     mutation.mutate(loginUserInput, {
       onSuccess(data) {
-        console.log(data)
+        console.log(data);
         const accessToken = get(data, ["auth", "login", "accessToken"]);
         const refreshToken = get(data, ["auth", "login", "refreshToken"]);
         if (accessToken && refreshToken) {

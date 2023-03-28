@@ -23,8 +23,10 @@ export type AuthMutations = {
   __typename?: 'AuthMutations';
   login?: Maybe<AuthenticatedUserSuccess>;
   refreshNewToken?: Maybe<AuthenticatedUserSuccess>;
+  requestResetPassword?: Maybe<Scalars['Boolean']>;
   resendMFACode?: Maybe<Scalars['Boolean']>;
   resendVerifyEmail?: Maybe<ResendVerifyAccountEmailResponse>;
+  resetPassword?: Maybe<User>;
   signUp?: Maybe<SignUpResponse>;
   verifyAccount?: Maybe<VerifyAccountResponse>;
   verifyFacebookAuthCode?: Maybe<AuthenticatedUserSuccess>;
@@ -46,6 +48,11 @@ export type AuthMutationsRefreshNewTokenArgs = {
 };
 
 
+export type AuthMutationsRequestResetPasswordArgs = {
+  email: Scalars['String'];
+};
+
+
 export type AuthMutationsResendMfaCodeArgs = {
   email: Scalars['String'];
 };
@@ -53,6 +60,12 @@ export type AuthMutationsResendMfaCodeArgs = {
 
 export type AuthMutationsResendVerifyEmailArgs = {
   email: Scalars['String'];
+};
+
+
+export type AuthMutationsResetPasswordArgs = {
+  newPassword: Scalars['String'];
+  resetPasswordCode: Scalars['String'];
 };
 
 
@@ -93,6 +106,11 @@ export type AuthMutationsVerifyGoogleAuthCodeAdminArgs = {
 export type AuthMutationsVerifyMfaCodeArgs = {
   code: Scalars['String'];
   email: Scalars['String'];
+};
+
+export type AuthQueries = {
+  __typename?: 'AuthQueries';
+  getMe?: Maybe<User>;
 };
 
 export type AuthenticatedItem = User;
@@ -726,8 +744,8 @@ export type PermissionWhereUniqueInput = {
 
 export type Query = {
   __typename?: 'Query';
+  auth?: Maybe<AuthQueries>;
   authenticatedItem?: Maybe<AuthenticatedItem>;
-  getMe?: Maybe<User>;
   keystone: KeystoneMeta;
   mFA?: Maybe<Mfa>;
   mFAS?: Maybe<Array<Mfa>>;
@@ -1111,6 +1129,8 @@ export type User = {
   refreshSentAt?: Maybe<Scalars['DateTime']>;
   refreshToken?: Maybe<Scalars['String']>;
   refreshTokenKey?: Maybe<Scalars['String']>;
+  resetPasswordCode?: Maybe<Scalars['String']>;
+  resetPasswordCodeIat?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -1169,6 +1189,8 @@ export type UserCreateInput = {
   refreshSentAt?: InputMaybe<Scalars['DateTime']>;
   refreshToken?: InputMaybe<Scalars['String']>;
   refreshTokenKey?: InputMaybe<Scalars['String']>;
+  resetPasswordCode?: InputMaybe<Scalars['String']>;
+  resetPasswordCodeIat?: InputMaybe<Scalars['DateTime']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -1199,6 +1221,8 @@ export type UserOrderByInput = {
   refreshSentAt?: InputMaybe<OrderDirection>;
   refreshToken?: InputMaybe<OrderDirection>;
   refreshTokenKey?: InputMaybe<OrderDirection>;
+  resetPasswordCode?: InputMaybe<OrderDirection>;
+  resetPasswordCodeIat?: InputMaybe<OrderDirection>;
   updatedAt?: InputMaybe<OrderDirection>;
 };
 
@@ -1312,6 +1336,8 @@ export type UserUpdateInput = {
   refreshSentAt?: InputMaybe<Scalars['DateTime']>;
   refreshToken?: InputMaybe<Scalars['String']>;
   refreshTokenKey?: InputMaybe<Scalars['String']>;
+  resetPasswordCode?: InputMaybe<Scalars['String']>;
+  resetPasswordCodeIat?: InputMaybe<Scalars['DateTime']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -1345,6 +1371,8 @@ export type UserWhereInput = {
   refreshSentAt?: InputMaybe<DateTimeNullableFilter>;
   refreshToken?: InputMaybe<StringFilter>;
   refreshTokenKey?: InputMaybe<StringFilter>;
+  resetPasswordCode?: InputMaybe<StringNullableFilter>;
+  resetPasswordCodeIat?: InputMaybe<DateTimeNullableFilter>;
   updatedAt?: InputMaybe<DateTimeNullableFilter>;
 };
 
@@ -1366,5 +1394,23 @@ export type LoginMutationVariables = Exact<{
 
 export type LoginMutation = { __typename?: 'Mutation', auth?: { __typename?: 'AuthMutations', login?: { __typename?: 'AuthenticatedUserSuccess', accessToken?: string | null, refreshToken?: string | null, isSentMFACode?: boolean | null } | null } | null };
 
+export type GetMeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetMeQuery = { __typename?: 'Query', auth?: { __typename?: 'AuthQueries', getMe?: { __typename?: 'User', id: string, email?: string | null, confirmationCode?: string | null, confirmationCodeIat?: any | null, refreshTokenKey?: string | null, resetPasswordCode?: string | null, resetPasswordCodeIat?: any | null, googleId?: string | null, facebookId?: string | null, firstName?: string | null, lastName?: string | null, phone?: string | null, metaData?: any | null, recoveryCode?: string | null, recoverySentAt?: any | null, refreshToken?: string | null, refreshSentAt?: any | null, facebookCode?: string | null, facebookSentAt?: any | null, googleCode?: string | null, googleSentAt?: any | null, isSuperAdmin?: boolean | null, isVerified?: boolean | null, isBanned?: boolean | null, isDeleted?: boolean | null, isMFAEmail?: boolean | null, authType?: UserAuthTypeType | null, lastSignInAt?: any | null, createdAt?: any | null, updatedAt?: any | null, password?: { __typename?: 'PasswordState', isSet: boolean } | null, photo?: { __typename?: 'ImageFieldOutput', id: string, filesize: number, width: number, height: number, extension: ImageExtension, url: string } | null } | null } | null };
+
+export type SignUpMutationVariables = Exact<{
+  email: Scalars['String'];
+  password: Scalars['String'];
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  phone?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type SignUpMutation = { __typename?: 'Mutation', auth?: { __typename?: 'AuthMutations', signUp?: { __typename?: 'SignUpResponse', isActivated?: boolean | null, isSignUpSuccess?: boolean | null, isEmailSent?: boolean | null } | null } | null };
+
 
 export const LoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"Login"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"email"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"password"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"auth"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"login"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"email"},"value":{"kind":"Variable","name":{"kind":"Name","value":"email"}}},{"kind":"Argument","name":{"kind":"Name","value":"password"},"value":{"kind":"Variable","name":{"kind":"Name","value":"password"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"accessToken"}},{"kind":"Field","name":{"kind":"Name","value":"refreshToken"}},{"kind":"Field","name":{"kind":"Name","value":"isSentMFACode"}}]}}]}}]}}]} as unknown as DocumentNode<LoginMutation, LoginMutationVariables>;
+export const GetMeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getMe"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"auth"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getMe"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"confirmationCode"}},{"kind":"Field","name":{"kind":"Name","value":"confirmationCodeIat"}},{"kind":"Field","name":{"kind":"Name","value":"refreshTokenKey"}},{"kind":"Field","name":{"kind":"Name","value":"resetPasswordCode"}},{"kind":"Field","name":{"kind":"Name","value":"resetPasswordCodeIat"}},{"kind":"Field","name":{"kind":"Name","value":"password"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isSet"}}]}},{"kind":"Field","name":{"kind":"Name","value":"googleId"}},{"kind":"Field","name":{"kind":"Name","value":"facebookId"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"metaData"}},{"kind":"Field","name":{"kind":"Name","value":"recoveryCode"}},{"kind":"Field","name":{"kind":"Name","value":"recoverySentAt"}},{"kind":"Field","name":{"kind":"Name","value":"refreshToken"}},{"kind":"Field","name":{"kind":"Name","value":"refreshSentAt"}},{"kind":"Field","name":{"kind":"Name","value":"facebookCode"}},{"kind":"Field","name":{"kind":"Name","value":"facebookSentAt"}},{"kind":"Field","name":{"kind":"Name","value":"googleCode"}},{"kind":"Field","name":{"kind":"Name","value":"googleSentAt"}},{"kind":"Field","name":{"kind":"Name","value":"isSuperAdmin"}},{"kind":"Field","name":{"kind":"Name","value":"isVerified"}},{"kind":"Field","name":{"kind":"Name","value":"isBanned"}},{"kind":"Field","name":{"kind":"Name","value":"isDeleted"}},{"kind":"Field","name":{"kind":"Name","value":"isMFAEmail"}},{"kind":"Field","name":{"kind":"Name","value":"authType"}},{"kind":"Field","name":{"kind":"Name","value":"photo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"filesize"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"extension"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"lastSignInAt"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]}}]} as unknown as DocumentNode<GetMeQuery, GetMeQueryVariables>;
+export const SignUpDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SignUp"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"email"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"password"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"firstName"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"lastName"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"phone"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"auth"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"signUp"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"email"},"value":{"kind":"Variable","name":{"kind":"Name","value":"email"}}},{"kind":"Argument","name":{"kind":"Name","value":"password"},"value":{"kind":"Variable","name":{"kind":"Name","value":"password"}}},{"kind":"Argument","name":{"kind":"Name","value":"firstName"},"value":{"kind":"Variable","name":{"kind":"Name","value":"firstName"}}},{"kind":"Argument","name":{"kind":"Name","value":"lastName"},"value":{"kind":"Variable","name":{"kind":"Name","value":"lastName"}}},{"kind":"Argument","name":{"kind":"Name","value":"phone"},"value":{"kind":"Variable","name":{"kind":"Name","value":"phone"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isActivated"}},{"kind":"Field","name":{"kind":"Name","value":"isSignUpSuccess"}},{"kind":"Field","name":{"kind":"Name","value":"isEmailSent"}}]}}]}}]}}]} as unknown as DocumentNode<SignUpMutation, SignUpMutationVariables>;

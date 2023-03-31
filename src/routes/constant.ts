@@ -3,6 +3,7 @@ export const paths = {
   styleGuide: "/style-guide",
   todos: "/todos",
   profile: "/profile",
+  changePassword: "change-password",
 
   admin: "/admin",
   adminTodos: "/admin/todos",

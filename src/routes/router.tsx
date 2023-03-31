@@ -19,6 +19,7 @@ const StyleGuide = lazy(() => import("../screens/StyleGuide"));
 const Todos = lazy(() => import("../screens/Todos"));
 const Profile = lazy(() => import("../screens/Profile"));
 const ResetPassword = lazy(() => import("../screens/ResetPassword"));
+const ChangePassword = lazy(() => import("../screens/ChangePassword"));
 
 const Private = () => {
   // const isAuth = useAuthenticateStore(
@@ -90,6 +91,10 @@ export const router = createBrowserRouter([
               {
                 path: paths.profile,
                 element: <Profile />,
+              },
+              {
+                path: paths.changePassword,
+                element: <ChangePassword />,
               },
             ],
           },

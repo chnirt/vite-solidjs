@@ -19,6 +19,7 @@ const Dashboard = () => {
       <NavLink to={paths.todos}>+todos</NavLink>
       <NavLink to={paths.styleGuide}>+style-guide</NavLink>
       <NavLink to={paths.profile}>+profile</NavLink>
+      <NavLink to={paths.changePassword}>+changePassword</NavLink>
       <Outlet />
     </div>
   );

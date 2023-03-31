@@ -6,16 +6,16 @@ import { graphql } from "../gql";
 import { request } from "../gql/queryClient";
 import { useMutation } from "@tanstack/react-query";
 import { get } from "lodash";
-import { Variables } from "graphql-request";
 import { user } from "../constants";
 import { toast } from "react-toastify";
+import { ResendVerifyEmailMutationVariables } from "../gql/graphql";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState(user.email ?? "");
 
   const mutation = useMutation({
-    mutationFn: async (variables: Variables) => {
+    mutationFn: async (variables: ResendVerifyEmailMutationVariables) => {
       const resendVerifyEmailMutation = graphql(`
         mutation ResendVerifyEmail($email: String!) {
           auth {
@@ -41,14 +41,6 @@ const ResetPassword = () => {
           });
         }
       },
-      // onError(error) {
-      //   const errorMessage = get(error, ["response", "errors", 0, "message"]);
-      //   if (errorMessage) {
-      //     toast(errorMessage, {
-      //       type: toast.TYPE.ERROR,
-      //     });
-      //   }
-      // },
     });
   }, [email]);
 

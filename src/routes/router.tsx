@@ -18,6 +18,7 @@ const Root = lazy(() => import("../screens/Root"));
 const StyleGuide = lazy(() => import("../screens/StyleGuide"));
 const Todos = lazy(() => import("../screens/Todos"));
 const Profile = lazy(() => import("../screens/Profile"));
+const ResetPassword = lazy(() => import("../screens/ResetPassword"));
 
 const Private = () => {
   // const isAuth = useAuthenticateStore(
@@ -52,9 +53,7 @@ const Public = () => {
 };
 
 const Common = () => {
-  return (
-    <Outlet />
-  );
+  return <Outlet />;
 };
 
 const Admin = () => {
@@ -116,6 +115,10 @@ export const router = createBrowserRouter([
           {
             path: paths.register,
             element: <Register />,
+          },
+          {
+            path: paths.resetPassword,
+            element: <ResetPassword />,
           },
         ],
       },

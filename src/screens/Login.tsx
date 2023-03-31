@@ -37,13 +37,12 @@ const Login = () => {
 
   const handleLogin = useCallback(() => {
     setLoading(true);
-    const loginUserInput = {
+    const variables = {
       email,
       password: pwd,
     };
-    mutation.mutate(loginUserInput, {
+    mutation.mutate(variables, {
       onSuccess(data) {
-        console.log(data);
         const accessToken = get(data, ["auth", "login", "accessToken"]);
         const refreshToken = get(data, ["auth", "login", "refreshToken"]);
         if (accessToken && refreshToken) {
@@ -68,9 +67,14 @@ const Login = () => {
     });
   }, [email, pwd]);
 
+  const navigateResetPassword = useCallback(() => {
+    navigate(paths.resetPassword);
+  }, []);
+
   const navigateRegister = useCallback(() => {
     navigate(paths.register);
   }, []);
+
   return (
     <Fragment>
       Login Page
@@ -86,6 +90,7 @@ const Login = () => {
         onChange={(e) => setPwd(e.target.value)}
       />
       <Button onClick={handleLogin}>Login</Button>
+      <a onClick={navigateResetPassword}>Forgot password</a>
       <a onClick={navigateRegister}>New user? Create account</a>
     </Fragment>
   );

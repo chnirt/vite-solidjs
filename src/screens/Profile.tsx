@@ -6,19 +6,17 @@ import { request } from "../gql/queryClient";
 
 const useProfile = () => {
   const profileQuery = graphql(`
+    # the script will automatically call login and set shared header (token)
     query getMe {
       auth {
         getMe {
-          id
           email
+          id
           confirmationCode
           confirmationCodeIat
           refreshTokenKey
           resetPasswordCode
           resetPasswordCodeIat
-          password {
-            isSet
-          }
           googleId
           facebookId
           firstName
@@ -27,8 +25,6 @@ const useProfile = () => {
           metaData
           recoveryCode
           recoverySentAt
-          refreshToken
-          refreshSentAt
           facebookCode
           facebookSentAt
           googleCode
@@ -39,6 +35,12 @@ const useProfile = () => {
           isDeleted
           isMFAEmail
           authType
+          lastSignInAt
+          createdAt
+          updatedAt
+          password {
+            isSet
+          }
           photo {
             id
             filesize
@@ -47,9 +49,6 @@ const useProfile = () => {
             extension
             url
           }
-          lastSignInAt
-          createdAt
-          updatedAt
         }
       }
     }

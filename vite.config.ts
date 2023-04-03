@@ -10,4 +10,7 @@ export default defineConfig({
   preview: {
     port: 3001,
   },
+  build: {
+    outDir: "public",
+  },
 });

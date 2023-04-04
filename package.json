@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "preview-all-interfaces": "HOST=0.0.0.0 vite preview",
     "env:setup": "npx dotenv-vault new vlt_0ce5ec26c44e6d82c4c30920bd2f02b6bc0db94e67c4ab77e9425ceb8e38ad3d",
     "env:login": "npx dotenv-vault login",
     "env:logout": "npx dotenv-vault logout",

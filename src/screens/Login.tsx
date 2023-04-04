@@ -19,6 +19,7 @@ const Login = () => {
 
   const mutation = useMutation({
     mutationFn: async (loginUserInput: AuthMutationsLoginArgs) => {
+      setLoading(true);
       const loginMutation = graphql(`
         mutation Login($email: String!, $password: String!) {
           auth {
@@ -36,13 +37,13 @@ const Login = () => {
   });
 
   const handleLogin = useCallback(() => {
-    setLoading(true);
     const variables = {
       email,
       password: pwd,
     };
     mutation.mutate(variables, {
       onSuccess(data) {
+        console.log("hello");
         const accessToken = get(data, ["auth", "login", "accessToken"]);
         const refreshToken = get(data, ["auth", "login", "refreshToken"]);
         if (accessToken && refreshToken) {

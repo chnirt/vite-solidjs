@@ -10,6 +10,7 @@ interface Token {
 
 interface AuthenticateState {
   isLoading: boolean;
+  isLoaded: boolean;
   accessToken: string | null;
   refreshToken: string | null;
   setLoading: (isLoading: boolean) => void;
@@ -28,7 +29,8 @@ export const createAuthenticateStore: StateCreator<
   [],
   AuthenticateState
 > = (set) => ({
-  isLoading: false,
+  isLoading: true,
+  isLoaded: false,
   accessToken: null,
   refreshToken: null,
   setLoading: (isLoading: boolean) =>
@@ -50,13 +52,16 @@ export const createAuthenticateStore: StateCreator<
   checkTokens: () => {
     const accessToken = localStorage.getItem("access-token");
     const refreshToken = localStorage.getItem("refresh-token");
-    if (accessToken && refreshToken) {
-      set((state: AuthenticateState) => ({
-        ...state,
-        accessToken,
-        refreshToken,
-      }));
-    }
+    set((state: AuthenticateState) => ({
+      ...state,
+      ...(accessToken && refreshToken
+        ? {
+            accessToken,
+            refreshToken,
+          }
+        : {}),
+      isLoaded: true,
+    }));
   },
 });
 

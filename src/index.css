@@ -121,11 +121,10 @@
   .f900 {
     @apply font-black;
   }
-  /* ... */
 }
 
-@tailwind components;
-@tailwind utilities;
+/* @tailwind components; */
+/* @tailwind utilities; */
 
 @font-face {
   font-family: "Roboto";

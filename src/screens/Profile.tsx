@@ -74,7 +74,7 @@ const Profile = () => {
     }
   }, [accessToken]);
   return (
-    <div>
+    <div className="flex">
       Profile
       {isLoading ? (
         "Loading..."

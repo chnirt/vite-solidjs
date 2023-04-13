@@ -9,6 +9,7 @@ import { useAuthenticateStore } from "../global/authenticateSlice";
 
 import { paths } from "../routes/constant";
 
+const Home = lazy(() => import("../screens/Home"));
 const Dashboard = lazy(() => import("../screens/Dashboard"));
 const Error = lazy(() => import("../screens/Error"));
 const Login = lazy(() => import("../screens/Login"));
@@ -77,9 +78,13 @@ export const router = createBrowserRouter([
         element: <Private />,
         children: [
           {
-            path: paths.dashboard,
-            element: <Dashboard />,
+            // path: paths.dashboard,
+            element: <Home />,
             children: [
+              {
+                path: "/",
+                element: <Dashboard />,
+              },
               {
                 path: paths.styleGuide,
                 element: <StyleGuide />,

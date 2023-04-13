@@ -20,3 +20,4 @@ Further help:
 - https://blog.logrocket.com/how-to-use-custom-fonts-tailwind-css/
 - https://github.com/jasonkuhrt/graphql-request/tree/main/examples
 - https://www.codecademy.com/learn/learn-typescript/modules/learn-typescript-advanced-object-types/cheatsheet
+- https://windmillui.com/dashboard-html

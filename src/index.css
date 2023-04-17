@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/Roboto/Roboto-Regular.ttf");
+}
+
 @tailwind base;
 @layer base {
   body {
@@ -123,13 +128,8 @@
   }
 }
 
-/* @tailwind components; */
+@tailwind components;
 /* @tailwind utilities; */
-
-@font-face {
-  font-family: "Roboto";
-  src: url("/fonts/Roboto/Roboto-Regular.ttf");
-}
 
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;

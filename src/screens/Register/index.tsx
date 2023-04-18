@@ -8,11 +8,11 @@ import {
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 // import Button from "../components/Button";
-import { registerUser } from "../constants";
-import { graphql } from "../gql";
-import { AuthMutationsSignUpArgs } from "../gql/graphql";
-import { request } from "../gql/queryClient";
-import { paths } from "../routes/constant";
+import { registerUser } from "../../constants";
+import { graphql } from "../../gql";
+import { AuthMutationsSignUpArgs } from "../../gql/graphql";
+import { request } from "../../gql/queryClient";
+import { paths } from "../../routes/constant";
 
 const Register = () => {
   const navigate = useNavigate();

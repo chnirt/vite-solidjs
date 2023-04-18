@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect } from "react";
 import { Outlet } from "react-router-dom";
-import { useAuthenticateStore } from "../global/authenticateSlice";
+import { useAuthenticateStore } from "../../global/authenticateSlice";
 
 const Root = () => {
   const { isLoaded, checkTokens } = useAuthenticateStore();

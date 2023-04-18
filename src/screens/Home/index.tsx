@@ -2,10 +2,11 @@ import { useCallback, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 // import Button from "../components/Button";
 // import Navbar from "../components/Navbar";
-import { useAuthenticateStore } from "../global/authenticateSlice";
-import { paths } from "../routes/constant";
+import { useAuthenticateStore } from "../../global/authenticateSlice";
+import { paths } from "../../routes/constant";
 import clsx from "clsx";
-import CNTransition from "../components/CNTransition";
+import CNTransition from "../../components/CNTransition";
+import useDarkMode from "../../hooks/useMode";
 
 const appName = "Groove Technology" ?? "Windmill";
 
@@ -32,7 +33,9 @@ const Home = () => {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isPagesMenuOpen, setIsPagesMenuOpen] = useState(false);
-  const [dark, setDark] = useState(false);
+  const [mode, setMode] = useDarkMode("light");
+  const [dark, setDark] = useState(mode === "dark");
+
   const { removeTokens } = useAuthenticateStore();
 
   const toggleSideMenu = useCallback(() => {
@@ -43,7 +46,9 @@ const Home = () => {
 
   const toggleTheme = useCallback(() => {
     setDark((prevState) => !prevState);
-  }, []);
+    const newMode = mode === "light" ? "dark" : "light";
+    setMode(newMode);
+  }, [mode, setMode]);
 
   const toggleNotificationsMenu = useCallback(() => {}, []);
 

@@ -1,11 +1,11 @@
 import { useCallback, useState } from "react";
-import Button from "../components/Button";
+import Button from "../../components/Button";
 import { useMutation } from "@tanstack/react-query";
-import { graphql } from "../gql";
-import { graphQLClient, request } from "../gql/queryClient";
-import { ChangePasswordMutationVariables } from "../gql/graphql";
+import { graphql } from "../../gql";
+import { graphQLClient, request } from "../../gql/queryClient";
+import { ChangePasswordMutationVariables } from "../../gql/graphql";
 import { get } from "lodash";
-import { useAuthenticateStore } from "../global/authenticateSlice";
+import { useAuthenticateStore } from "../../global/authenticateSlice";
 import { toast } from "react-toastify";
 
 const ChangePassword = () => {

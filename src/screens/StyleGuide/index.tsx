@@ -1,11 +1,11 @@
 import clsx from "clsx";
 import { MdDelete, MdOutlineMailOutline } from "react-icons/md";
 import { HiPlus } from "react-icons/hi";
-import Typography from "../components/Typography";
+import Typography from "../../components/Typography";
 import { Fragment, useCallback } from "react";
-import Badge from "../components/Badge";
-import Button from "../components/Button";
-import useDarkMode from "../hooks/useMode";
+import Badge from "../../components/Badge";
+import Button from "../../components/Button";
+import useDarkMode from "../../hooks/useMode";
 
 const renderTypography = () => {
   return (

@@ -1,14 +1,14 @@
 import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { paths } from "../routes/constant";
+import { paths } from "../../routes/constant";
 // import Button from "../components/Button";
-import { graphql } from "../gql";
-import { request } from "../gql/queryClient";
+import { graphql } from "../../gql";
+import { request } from "../../gql/queryClient";
 import { useMutation } from "@tanstack/react-query";
 import { get } from "lodash";
-import { user } from "../constants";
+import { user } from "../../constants";
 import { toast } from "react-toastify";
-import { ResendVerifyEmailMutationVariables } from "../gql/graphql";
+import { ResendVerifyEmailMutationVariables } from "../../gql/graphql";
 
 const ResetPassword = () => {
   const navigate = useNavigate();

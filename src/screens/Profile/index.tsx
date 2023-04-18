@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
-import { useAuthenticateStore } from "../global/authenticateSlice";
-import { graphql } from "../gql";
-import { request } from "../gql/queryClient";
+import { useAuthenticateStore } from "../../global/authenticateSlice";
+import { graphql } from "../../gql";
+import { request } from "../../gql/queryClient";
 
 const useProfile = () => {
   const profileQuery = graphql(`

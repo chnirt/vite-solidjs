@@ -7,16 +7,16 @@ import {
 import { useNavigate } from "react-router-dom";
 import get from "lodash/get";
 // import Button from "../components/Button";
-import { user } from "../constants";
-import { graphQLClient, request } from "../gql/queryClient";
-import { paths } from "../routes/constant";
-import { useAuthenticateStore } from "../global/authenticateSlice";
-import { graphql } from "../gql";
-import { AuthMutationsLoginArgs } from "../gql/graphql";
+import { user } from "../../constants";
+import { graphQLClient, request } from "../../gql/queryClient";
+import { paths } from "../../routes/constant";
+import { useAuthenticateStore } from "../../global/authenticateSlice";
+import { graphql } from "../../gql";
+import { AuthMutationsLoginArgs } from "../../gql/graphql";
 import { Form } from "react-final-form";
-import { zodLoginForm } from "../validations/zodSchema";
+import { zodLoginForm } from "../../validations/zodSchema";
 import { forEach, set } from "lodash";
-import { MyField } from "../validations/MyField";
+import { MyField } from "../../validations/MyField";
 
 const Login = () => {
   const { setLoading, setTokens } = useAuthenticateStore();

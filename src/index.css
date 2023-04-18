@@ -1,3 +1,6 @@
+@import url('../public/assets/css/tailwind.css');
+@import url('../public/assets/css/tailwind.output.css');
+
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 
 @font-face {
@@ -5,7 +8,7 @@
   src: url("/fonts/Roboto/Roboto-Regular.ttf");
 }
 
-@tailwind base;
+/* @tailwind base; */
 @layer base {
   body {
     @apply bg-light-surface dark:bg-dark-surface;
@@ -128,7 +131,7 @@
   }
 }
 
-@tailwind components;
+/* @tailwind components; */
 /* @tailwind utilities; */
 
 /* :root {
